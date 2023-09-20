@@ -1,1 +1,1 @@
-# blueos-extension-template
+# blueos-jupyter
