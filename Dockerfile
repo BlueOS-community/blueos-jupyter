@@ -42,8 +42,8 @@ LABEL authors='[\
     "email": "patrickelectric@gmail.com"\
   },\
   {\
-    "name": "Raul Trombin",\
-    "email": "raulvtormbin@gmail.com"\
+    "name": "Raul Victor Trombin",\
+    "email": "raulvtrombin@gmail.com"\
   }\
 ]'
 LABEL company='{\
