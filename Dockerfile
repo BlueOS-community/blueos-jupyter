@@ -29,7 +29,7 @@ LABEL permissions='{\
   "HostConfig": {\
     "Privileged": true,\
     "Binds": [\
-      "/usr/blueos/userdata/jupyter/root:/root:rw",\
+      "/usr/blueos/extesions/jupyter/root:/root:rw",\
       "/dev:/dev:rw"\
     ],\
     "Privileged": true,\
