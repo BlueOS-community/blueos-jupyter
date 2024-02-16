@@ -51,7 +51,7 @@ LABEL company='{\
   "name": "Blue Robotics",\
   "email": "support@bluerobotics.com"\
 }'
-LABEL readme="https://raw.githubusercontent.com/patrickelectric/blueos-jupyter/master/README.md"
+LABEL readme="https://raw.githubusercontent.com/BlueOS-Community/blueos-jupyter/master/README.md"
 LABEL type="other"
 LABEL tags='[\
   "python",\
