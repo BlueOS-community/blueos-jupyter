@@ -1,14 +1,38 @@
-FROM python:3.11.5-bookworm
+FROM python:3.11.9-bookworm
+
+# Define arguments for target platform
+# These arguments are defined automatically by buildx when using `--platform`
+ARG TARGETARCH
+ARG TARGETVARIANT
+
+RUN echo "Building to: ${TARGETARCH} ${TARGETVARIANT}"
 
 RUN apt update -y
 RUN apt install -y nginx
-RUN apt install -y build-essential libffi-dev libzmq3-dev
-RUN pip install --no-cache-dir jupyterlab --verbose
+RUN apt install -y cmake build-essential libffi-dev libzmq3-dev libopenblas-dev
+
+RUN echo "Configuring pip to use piwheels"
+RUN echo "[global]" >> /etc/pip.conf
+RUN echo "extra-index-url=https://www.piwheels.org/simple" >> /etc/pip.conf
+
 RUN pip install --no-cache-dir plotly --verbose
 RUN pip install --no-cache-dir --verbose \
   bluerobotics-ping \
   bluerobotics-navigator
+
+RUN pip install matplotlib
+RUN pip install numpy
 RUN pip install --no-cache-dir pymavlink --verbose
+RUN pip install pyserial
+
+# It takes forever to run this one!! Edit from this line below
+RUN pip install --upgrade pip
+RUN pip install cmake scikit-build --verbose
+RUN apt install -y libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libgstreamer-plugins-bad1.0-dev gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly gstreamer1.0-libav gstreamer1.0-tools gstreamer1.0-x gstreamer1.0-alsa gstreamer1.0-gl
+RUN CMAKE_ARGS=-DPYTHON3_LIMITED_API=ON pip install opencv-python-headless --verbose
+
+# This need to be after opencv
+RUN pip install --no-cache-dir jupyterlab --verbose
 
 # Move our nginx configuration to the standard nginx path
 COPY files/nginx.conf /etc/nginx/nginx.conf
