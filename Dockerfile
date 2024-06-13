@@ -34,6 +34,8 @@ RUN CMAKE_ARGS=-DPYTHON3_LIMITED_API=ON pip install opencv-python-headless --ver
 # This need to be after opencv
 RUN pip install --no-cache-dir jupyterlab --verbose
 
+RUN pip install mavsdk
+
 # Move our nginx configuration to the standard nginx path
 COPY files/nginx.conf /etc/nginx/nginx.conf
 
